@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
-from database import engine, Base
-import models  # ensure model classes are registered with SQLAlchemy metadata
+from database import engine
+from models import Base
 from routers import auth_router, resume, careers, gaps, quiz, interview
 from fastapi.security import HTTPBearer
 
@@ -15,15 +15,12 @@ app = FastAPI(title='CareerLens', version='1.0.0',
 
 security = HTTPBearer()
 
-allowed_origins = [
-    origin.strip()
-    for origin in os.getenv('CORS_ORIGINS', 'http://localhost:3000').split(',')
-    if origin.strip()
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+     allow_origins=[
+        'http://localhost:3000',
+        'https://careerlens-1-cz3s.onrender.com',
+    ],
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*'],
