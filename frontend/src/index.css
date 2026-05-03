@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0f1117;
+  color: #e2e8f0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Limit motion to interactive controls instead of every element */
+button, a, input, textarea, select, [role='button'] {
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1a1d27; }
+::-webkit-scrollbar-thumb { background: #3d4258; border-radius: 3px; }
